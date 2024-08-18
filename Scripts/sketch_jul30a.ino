@@ -29,9 +29,10 @@ void setup() {
  	// Connect to Wifi network.
  	WiFi.begin(ssid, password); ///Conecta o Esp32 à rede WiFi especificada.
  	while (WiFi.status() != WL_CONNECTED) { ///Aguarda até que a comunicação WiFi seja estabelecida
- 			delay(500); ////A cada 500ms
-      Serial.print(F(".")); ////Imprime um ponto
+ 		delay(500); ////A cada 500ms
+    Serial.print(F(".")); ////Imprime um ponto
  	}
+  
  	udp.begin(localPort); ///Inicia a comunicação UDP na porta local definida
  	Serial.printf("UDP Client : %s:%i \n", WiFi.localIP().toString().c_str(), localPort); ///Imprime o endereço IP local e a porta UDP
 
@@ -46,24 +47,25 @@ void loop() {
     delay(1000); //Espera 1 segundo
     digitalWrite(pinLed, LOW); //Apaga o LED
     Serial.println("Fogo Detectado.");
-    }	
-    delay(500);
+  }	
+  delay(500);
 
-    int packetSize = udp.parsePacket(); ///Verifica se há pacotes UDP recebidos.
- 	if (packetSize) { ///Se houver pacotes recebidos:
- 			Serial.print(" Received packet from : "); Serial.println(udp.remoteIP()); ///Informa o IP de onde foram recebidos,
- 			int len = udp.read(packetBuffer, 255); ///Lê os dados
+  int packetSize = udp.parsePacket(); ///Verifica se há pacotes UDP recebidos.
+ 	
+  if (packetSize) { ///Se houver pacotes recebidos:
+ 		Serial.print(" Received packet from : "); Serial.println(udp.remoteIP()); ///Informa o IP de onde foram recebidos,
+ 		int len = udp.read(packetBuffer, 255); ///Lê os dados
 
- 			Serial.printf("Data : %s\n", packetBuffer); ///E os imprime.
- 			Serial.println();
-
-      if (packetBuffer[0] == 'F'){ //Se o pacote UDP recebido indicar fogo em algum ESP do servidor
-        Serial.println("PEGOU FOGO"); //Indica que há fogo em algum lugar
-        digitalWrite(pinLed, HIGH); //Acende o LED
-        delay(1000); //Espera 1 segundo
-        digitalWrite(pinLed, LOW); //Apaga o LED
-      }
- 	}
+ 		Serial.printf("Data : %s\n", packetBuffer); ///E os imprime.
+ 		Serial.println();
+    
+    if (packetBuffer[0] == 'F'){ //Se o pacote UDP recebido indicar fogo em algum ESP do servidor
+      Serial.println("PEGOU FOGO"); //Indica que há fogo em algum lugar
+      digitalWrite(pinLed, HIGH); //Acende o LED
+      delay(1000); //Espera 1 segundo
+      digitalWrite(pinLed, LOW); //Apaga o LED
+    }
+  }
 
 
 
