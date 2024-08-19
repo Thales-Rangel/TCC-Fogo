@@ -45,7 +45,7 @@ def main():
         if data not in enderecos:
             enderecos.append(addr)
         
-        if b'0' in data:
+        if b' 0 ' in data:
             for i in enderecos:
                 sock.sendto(b'F', i)
 
