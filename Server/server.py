@@ -19,8 +19,6 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 ## *socket.SOCK_DGRAM: Indica que o socket usará o protocolo UDP (User Datagram Protocol)
 
 
-sio.connect('http://localhost:5000')
-
 enderecos = []
 
 
@@ -49,7 +47,12 @@ def main():
         if data not in enderecos:
             enderecos.append(addr)
         
-        if b' 0 ' in data or b'500' in data:
+        fogo = str(data[16])
+        gas = int(data[32::])
+        
+        print(f'Fogo: {fogo}; Gás: {gas}')
+        
+        if fogo == 0 or gas >= 500:
             for i in enderecos:
                 sock.sendto(b'F', i)
 
