@@ -13,18 +13,4 @@
 
 <div id="data"></div>
 
-<script>
-    const socket = io();
-
-    socket.on('initial_data', (data) => {
-        document.getElementById('data').innerHTML = JSON.stringify(data, null, 2);
-    });
-
-    socket.on('update_data', (newData) => {
-        const currentData = JSON.parse(document.getElementById('data').innerHTML);
-        currentData.push(newData);
-        document.getElementById('data').innerHTML = JSON.stringify(currentData, null, 2);
-    });
-</script>
-
 </html>
