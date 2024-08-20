@@ -29,6 +29,8 @@ def connect():
 def disconnect():
 	print('Disconnected from server')
 
+sio.connect('http://localhost:5000')
+
 enderecos = []
 
 
