@@ -9,5 +9,19 @@
 
 <body>
 </body>
+<h1>Registro dos sensores:</h1>
+
+<div id="data"></div>
+
+<script>
+    async function fetchData() {
+        const response = await fetch('http://localhost:5000/data');
+        const data = await response.json();
+
+        document.getElementById('data').innerHTML = JSON.stringify(data, null, 2);
+    }
+
+    fetchData();
+</script>
 
 </html>

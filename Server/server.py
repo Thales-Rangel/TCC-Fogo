@@ -1,5 +1,6 @@
 # Importação da biblioteca socket
 import socket
+import requests
 
 ## Esta biblioteca fornece acesso à interface de rede de baixo nível.
 ## Permitindo a criação e manipulação de sockets.
@@ -17,7 +18,6 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 ## *socket.AF_INET: Indica que o socket usará o protocolo IPv4
 ## *socket.SOCK_DGRAM: Indica que o socket usará o protocolo UDP (User Datagram Protocol)
-
 
 enderecos = []
 
@@ -41,7 +41,10 @@ def main():
         data, addr = sock.recvfrom(bufferSize)  # Recebe dados de um cliente com o tamanho do buffer especificado.
                                                 # O endereço do remetente é armazenado em addr
         print(f"received message:\n{data} from {addr} \n")  # Imprime a mensagem recebida e o endereço do remetente
-        
+        sensor_data = {"data": data.decode(), "address": addr}
+        response = requests.post('http://localhost:5000/data', json=sensor_data)
+        print(response.json())
+
         if data not in enderecos:
             enderecos.append(addr)
         
