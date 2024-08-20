@@ -1,17 +1,23 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 data = []
 
-@app.route('/data', methods=['POST'])
-def receive_data():
-    new_data = request.json
-    data.append(new_data)
-    return jsonify({"status": "success"}), 200
+@app.route('/')
+def index():
+    return render_template('../index.html')
 
-@app.route('/data', methods=['GET'])
-def get_data():
-    return jsonify(data), 200
+@socketio.on('connect')
+def handle_connect():
+    emit('initial_data', data)
+
+@socketio.on('new_data')
+def handle_new_data(json):
+    data.append(json)
+    emit('update_data', json, broadcast=True)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    socketio.run(app, host='0.0.0.0', port=5000)
+    

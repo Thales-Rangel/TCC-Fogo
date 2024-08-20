@@ -14,14 +14,17 @@
 <div id="data"></div>
 
 <script>
-    async function fetchData() {
-        const response = await fetch('http://localhost:5000/data');
-        const data = await response.json();
+    const socket = io();
 
+    socket.on('initial_data', (data) => {
         document.getElementById('data').innerHTML = JSON.stringify(data, null, 2);
-    }
+    });
 
-    fetchData();
+    socket.on('update_data', (newData) => {
+        const currentData = JSON.parse(document.getElementById('data').innerHTML);
+        currentData.push(newData);
+        document.getElementById('data').innerHTML = JSON.stringify(currentData, null, 2);
+    });
 </script>
 
 </html>

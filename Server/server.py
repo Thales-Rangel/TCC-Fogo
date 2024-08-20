@@ -1,6 +1,6 @@
 # Importação da biblioteca socket
 import socket
-import requests
+import socketio
 
 ## Esta biblioteca fornece acesso à interface de rede de baixo nível.
 ## Permitindo a criação e manipulação de sockets.
@@ -19,6 +19,16 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 ## *socket.AF_INET: Indica que o socket usará o protocolo IPv4
 ## *socket.SOCK_DGRAM: Indica que o socket usará o protocolo UDP (User Datagram Protocol)
 
+sio = socketio.Client()
+    
+@sio.event
+def connect():
+    print('Connection established')
+      
+@sio.event
+def disconnect():
+	print('Disconnected from server')
+
 enderecos = []
 
 
@@ -32,8 +42,10 @@ def init():
 	
 	sock.bind(('', localPort)) #Associa o socket a porta local específicada (localPort).
                                #O endereço vazio '' indica que o socket aceitará conexões de qualquer IP.
+
 	print(f"UDP server : {get_ip_address()}:{localPort}") #Imprime o endereço IP do servidor e a porta local.
 	
+      
 	
 # Função Main:
 def main():
@@ -42,8 +54,7 @@ def main():
                                                 # O endereço do remetente é armazenado em addr
         print(f"received message:\n{data} from {addr} \n")  # Imprime a mensagem recebida e o endereço do remetente
         sensor_data = {"data": data.decode(), "address": addr}
-        response = requests.post('http://localhost:5000/data', json=sensor_data)
-        print(response.json())
+        sio.emit('new_data', sensor_data)
 
         if data not in enderecos:
             enderecos.append(addr)
