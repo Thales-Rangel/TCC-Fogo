@@ -1,0 +1,14 @@
+create table registrados(
+codigo bigint(20),
+dat_hora timestamp,
+sensor varchar (45),
+estado varchar(20)
+)default char set utf8mb4;
+
+create table config(
+ip varchar(50) not null, 
+nome_asp varchar (100),
+temperatura int,
+limite_gas int,
+primary key(ip)
+) default char set utf8mb4;
