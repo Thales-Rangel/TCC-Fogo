@@ -1,23 +1,33 @@
 # Importação da biblioteca socket
 import socket
+import mariadb
 
-## Esta biblioteca fornece acesso à interface de rede de baixo nível.
-## Permitindo a criação e manipulação de sockets.
-
+## socket: Esta biblioteca fornece acesso à interface de rede de baixo nível.
+## 		   Permitindo a criação e manipulação de sockets.
+## mariadb: Esta biblioteca permite a conexão e manipulação de dados com o SQL do mariadb
 
 # Definição de variáveis
 localPort=8888 #Porta local que será usada pelo servidor UDP
 bufferSize=1024 #Tamanho do buffer para a recepção de dados (1024 bytes)
 
+conexao = mariadb.connect( #Objeto de conexão ao banco de dados
+    user="root",
+    password="tcc-fogo",
+    host="localhost",
+    port=3306,
+    database="tcc_fogo"
+)
+
 ### Buffer: É usado para armazenar dados recebidos pelo socket antes de serem processados
 
 
-# Criação do socket
+# Criação do socket e do cusor
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 ## *socket.AF_INET: Indica que o socket usará o protocolo IPv4
 ## *socket.SOCK_DGRAM: Indica que o socket usará o protocolo UDP (User Datagram Protocol)
 
+sql = conexao.cursor() ## Objeto que executará os comandos SQL 
 
 enderecos = []
 
@@ -44,18 +54,25 @@ def main():
                                                 # O endereço do remetente é armazenado em addr
         print(f"received message:\n{data} from {addr} \n")  # Imprime a mensagem recebida e o endereço do remetente
 
-        if data not in enderecos:
+        if addr not in enderecos:
             enderecos.append(addr)
         
-        fogo = str(data[16])
-        gas = int(data[32::])
+        fogo = int(data[16:17])
+        gas = int(data[32:36])
+        estatus = data[36::]
         
-        print(f'Fogo: {fogo}; Gás: {gas}')
+        print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
         
-        if fogo == 0 or gas >= 500:
+        if b'Alerta!' in data:
             for i in enderecos:
                 sock.sendto(b'F', i)
 
+        try:
+            sql.execute(f"insert into registros values (default, '22-Ago-2024 12:00h', ?, ?, '26°', ?)", (fogo, gas, estatus))
+            conexao.commit()
+            print("Dados guardados com sucesso")
+        except Exception as e:
+            print(f"Erro na incerção de dados: {e}")
 
 
 # Função get_ip_address:
