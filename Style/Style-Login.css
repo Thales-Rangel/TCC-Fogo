@@ -1,16 +1,15 @@
 .login-page {
-    /*border: 1px solid red;*/
+    border: 1px solid red;
 
     width: 30%;
     padding: 20px;
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 35%;
 }
 
 .header,
 .login {
-
     /*border: 2px solid orange;*/
 
     text-align: center;
@@ -19,9 +18,13 @@
     margin-bottom: 20px;
 }
 
+.logo img {
+    width: 30%;
+}
+
 .matricula,
 .senha,
-.login-button {
+#login-button {
     width: 90%;
     height: 40px;
     border-radius: 20px;
@@ -58,7 +61,7 @@
     color: rgb(91, 90, 90);
 }
 
-.login-button {
+#login-button {
     border: 0;
     color: white;
     background-color: blue;
