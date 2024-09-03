@@ -53,26 +53,31 @@ def main():
         data, addr = sock.recvfrom(bufferSize)  # Recebe dados de um cliente com o tamanho do buffer especificado.
                                                 # O endereço do remetente é armazenado em addr
         print(f"received message:\n{data} from {addr} \n")  # Imprime a mensagem recebida e o endereço do remetente
+        
+        if b'MAC:' not in data:
+            if addr not in enderecos:
+                enderecos.append(addr)
+        
+            fogo = int(data[16:17])
+            gas = int(data[32:36])
+            estatus = str(data[36::])
+        
+            print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
+        
+            sock.sendto(b'V= 700', addr)
+        
+            if b'Alerta!' in data:
+                for i in enderecos:
+                    sock.sendto(b'F', i)
 
-        if addr not in enderecos:
-            enderecos.append(addr)
-        
-        fogo = int(data[16:17])
-        gas = int(data[32:36])
-        estatus = data[36::]
-        
-        print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
-        
-        if b'Alerta!' in data:
-            for i in enderecos:
-                sock.sendto(b'F', i)
-
-        try:
-            sql.execute(f"insert into registros values (default, '22-Ago-2024 12:00h', ?, ?, '26°', ?)", (fogo, gas, estatus))
-            conexao.commit()
-            print("Dados guardados com sucesso")
-        except Exception as e:
-            print(f"Erro na incerção de dados: {e}")
+            try:
+                sql.execute(f"insert into registros values (default, '22-Ago-2024 12:00h', ?, ?, '26°', ?)", (fogo, gas, estatus))
+                conexao.commit()
+                print("Dados guardados com sucesso")
+            except Exception as e:
+                print(f"Erro na incerção de dados: {e}")
+        else:
+            sql.execute("insert into modolos values (?, ?, ?")
 
 
 # Função get_ip_address:
