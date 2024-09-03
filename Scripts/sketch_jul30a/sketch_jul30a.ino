@@ -6,7 +6,7 @@
 #define pinLed 33
 #define pinGas 32
 
-#define lGas 500
+int lGas 500
 
 /// Define o pino 25 como pinGas, o sensor de gás está conectado.
 
@@ -98,7 +98,17 @@ void loop()
       delay(1000);                // Espera 1 segundo
       digitalWrite(pinLed, LOW);  // Apaga o LED
     }
+    
+    if(packetBuffer[0] == 'V'){
+       String valueStr = packetBuffer.substring(2);
+       lGas = valueStr.toInt();   
+       Serial.print("Valor limite de gás alterado para: ");
+       Serial.println(lGas);
+      }
+    
+      
   }
+ 
 
   udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
   char buf[30];                          /// Cria um buffer para a mensagem.
