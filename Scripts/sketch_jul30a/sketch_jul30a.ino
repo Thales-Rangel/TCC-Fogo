@@ -6,7 +6,7 @@
 #define pinLed 33
 #define pinGas 32
 
-int lGas 500
+int lGas = 500;
 
 /// Define o pino 25 como pinGas, o sensor de gás está conectado.
 
@@ -15,15 +15,15 @@ WiFiUDP udp; /// Cria um objeto udp para a comunicação UDP.
 
 char packetBuffer[255];           /// Cria um buffer para armazenar dados recebidos via UDP
 unsigned int localPort = 9999;    /// Define a porta local para comunicação UDP
-char *serverip = "192.168.176.3"; /// Define o endereço IP do servidor para enviar dados.
+char *serverip = "10.108.1.26"; /// Define o endereço IP do servidor para enviar dados.
 unsigned int serverport = 8888;   /// Define a porta do servidor para enviar dados.
 
-const char *ssid = "Redmi 12";         /// Define o SSID da rede WiFi.
-const char *password = "thales5g.123"; /// Define a senha da rede WiFi.
+const char *ssid = "wIFRN-IoT";         /// Define o SSID da rede WiFi.
+const char *password = "deviceiotifrn"; /// Define a senha da rede WiFi.
 
 bool infra;
 int nivelGas;
-int cont = 0;
+int cont = 30;
 // Função setup:
 void setup()
 {
@@ -35,6 +35,8 @@ void setup()
 
   pinMode(pinGas, INPUT);
 
+  WiFi.mode(WIFI_STA);
+
   delay(500);
   // Connect to Wifi network.
   WiFi.begin(ssid, password); /// Conecta o Esp32 à rede WiFi especificada.
@@ -44,7 +46,18 @@ void setup()
     Serial.print(F(".")); ////Imprime um ponto
   }
   udp.begin(localPort);                                                                 /// Inicia a comunicação UDP na porta local definida
+
+  Serial.println(" ");
   Serial.printf("UDP Client : %s:%i \n", WiFi.localIP().toString().c_str(), localPort); /// Imprime o endereço IP local e a porta UDP
+
+  Serial.print("Endereço MAC do Esp32: ");
+  Serial.println(WiFi.macAddress());
+
+  String mac = WiFi.macAddress();
+   udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
+   udp.print("MAC: ");
+   udp.println(mac);
+   udp.endPacket();
 
   Serial.println("Fim do setup!");
 }
@@ -55,7 +68,7 @@ void loop()
 
   infra = digitalRead(pinInfra);
   nivelGas = analogRead(pinGas);
-
+  int an = lGas/2;
   if (nivelGas >= lGas)
   {
     disparaSirene(pinLed, 1000);
@@ -99,9 +112,8 @@ void loop()
       digitalWrite(pinLed, LOW);  // Apaga o LED
     }
     
-    if(packetBuffer[0] == 'V'){
-       String valueStr = packetBuffer.substring(2);
-       lGas = valueStr.toInt();   
+  if(strncmp(packetBuffer, "V=", 2) == 0){
+       lGas = atoi(packetBuffer + 2);  
        Serial.print("Valor limite de gás alterado para: ");
        Serial.println(lGas);
       }
@@ -120,11 +132,11 @@ void loop()
   {
     char bufE[30];
 
-    if (nivelGas < 350)
+    if (nivelGas < an)
     {
       sprintf(bufE, "Normal");
     }
-    else if (nivelGas >= 350 & nivelGas < 500)
+    else if (nivelGas >= an & nivelGas < lGas)
     {
       sprintf(bufE, "Anormal");
     }
@@ -164,7 +176,7 @@ void desligaSirene(byte pin)
 
 void alertaFogo()
 {
-  while (infra != HIGH || nivelGas > 500)
+  while (infra != HIGH || nivelGas > lGas)
   {
     Serial.println("Fogo detectado!");
     udp.beginPacket(serverip, serverport);
@@ -174,6 +186,7 @@ void alertaFogo()
     sprintf(bufA, "Sensor do Fogo: %lu ", infra);
     sprintf(bufB, "Sensor do Gas: %lu ", nivelGas);
     sprintf(bufC, "Alerta!");
+    disparaSirene(pinLed, 500);
     udp.printf(bufA);
     udp.printf(bufB);
     udp.printf(bufC);
@@ -182,5 +195,6 @@ void alertaFogo()
     infra = digitalRead(pinInfra);
     nivelGas = analogRead(pinGas);
   }
+  desligaSirene(pinLed);
   cont = 0;
 }
