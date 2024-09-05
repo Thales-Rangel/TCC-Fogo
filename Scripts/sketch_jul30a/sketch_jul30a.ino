@@ -39,6 +39,10 @@ void setup()
 
   delay(500);
   // Connect to Wifi network.
+
+  Serial.print("Endereço MAC do Esp32: ");
+  Serial.println(WiFi.macAddress());
+
   WiFi.begin(ssid, password); /// Conecta o Esp32 à rede WiFi especificada.
   while (WiFi.status() != WL_CONNECTED)
   {                       /// Aguarda até que a comunicação WiFi seja estabelecida
@@ -134,7 +138,7 @@ void loop()
 
     if (nivelGas < an)
     {
-      sprintf(bufE, "Normal");
+      sprintf(bufE, "AOk");
     }
     else if (nivelGas >= an & nivelGas < lGas)
     {
