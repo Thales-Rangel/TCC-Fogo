@@ -13,10 +13,10 @@ int lGas = 500;
 // Declarações e Definições:
 WiFiUDP udp; /// Cria um objeto udp para a comunicação UDP.
 
-char packetBuffer[255];           /// Cria um buffer para armazenar dados recebidos via UDP
-unsigned int localPort = 9999;    /// Define a porta local para comunicação UDP
+char packetBuffer[255];         /// Cria um buffer para armazenar dados recebidos via UDP
+unsigned int localPort = 9999;  /// Define a porta local para comunicação UDP
 char *serverip = "10.108.1.26"; /// Define o endereço IP do servidor para enviar dados.
-unsigned int serverport = 8888;   /// Define a porta do servidor para enviar dados.
+unsigned int serverport = 8888; /// Define a porta do servidor para enviar dados.
 
 const char *ssid = "wIFRN-IoT";         /// Define o SSID da rede WiFi.
 const char *password = "deviceiotifrn"; /// Define a senha da rede WiFi.
@@ -49,7 +49,7 @@ void setup()
     delay(500);           ////A cada 500ms
     Serial.print(F(".")); ////Imprime um ponto
   }
-  udp.begin(localPort);                                                                 /// Inicia a comunicação UDP na porta local definida
+  udp.begin(localPort); /// Inicia a comunicação UDP na porta local definida
 
   Serial.println(" ");
   Serial.printf("UDP Client : %s:%i \n", WiFi.localIP().toString().c_str(), localPort); /// Imprime o endereço IP local e a porta UDP
@@ -58,10 +58,10 @@ void setup()
   Serial.println(WiFi.macAddress());
 
   String mac = WiFi.macAddress();
-   udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
-   udp.print("MAC: ");
-   udp.println(mac);
-   udp.endPacket();
+  udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
+  udp.print("MAC: ");
+  udp.println(mac);
+  udp.endPacket();
 
   Serial.println("Fim do setup!");
 }
@@ -72,7 +72,7 @@ void loop()
 
   infra = digitalRead(pinInfra);
   nivelGas = analogRead(pinGas);
-  int an = lGas/2;
+  int an = lGas / 2;
   if (nivelGas >= lGas)
   {
     disparaSirene(pinLed, 1000);
@@ -115,16 +115,14 @@ void loop()
       delay(1000);                // Espera 1 segundo
       digitalWrite(pinLed, LOW);  // Apaga o LED
     }
-    
-  if(strncmp(packetBuffer, "V=", 2) == 0){
-       lGas = atoi(packetBuffer + 2);  
-       Serial.print("Valor limite de gás alterado para: ");
-       Serial.println(lGas);
-      }
-    
-      
+
+    if (strncmp(packetBuffer, "V=", 2) == 0)
+    {
+      lGas = atoi(packetBuffer + 2);
+      Serial.print("Valor limite de gás alterado para: ");
+      Serial.println(lGas);
+    }
   }
- 
 
   udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
   char buf[30];                          /// Cria um buffer para a mensagem.
