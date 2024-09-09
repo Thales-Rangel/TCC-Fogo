@@ -59,8 +59,8 @@ def main():
                 enderecos.append(addr)
         
             fogo = int(data[16:17])
-            gas = int(data[32:36])
-            estatus = str(data[36::])
+            gas = int(data[32:data.find(b'A')])
+            estatus = str(data[data.find(b'A')::])
         
             print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
         
@@ -77,7 +77,7 @@ def main():
             except Exception as e:
                 print(f"Erro na incerção de dados: {e}")
         else:
-            sql.execute("insert into modolos values (?, ?, ?")
+            sock.sendto(b'Vtmnc', addr)
 
 
 # Função get_ip_address:
@@ -92,6 +92,8 @@ def get_ip_address():
 	
 	return ip_address #Retorna o endereço IP.
 	
+
+
 
 
 
