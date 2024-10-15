@@ -6,7 +6,7 @@
 #define pinLed 33
 #define pinGas 32
 
-int lGas = 500;
+int lGas = 1000;
 
 /// Define o pino 25 como pinGas, o sensor de gás está conectado.
 
@@ -15,15 +15,21 @@ WiFiUDP udp; /// Cria um objeto udp para a comunicação UDP.
 
 char packetBuffer[255];         /// Cria um buffer para armazenar dados recebidos via UDP
 unsigned int localPort = 9999;  /// Define a porta local para comunicação UDP
-char *serverip = "10.108.1.26"; /// Define o endereço IP do servidor para enviar dados.
+char *serverip = "10.108.1.200"; /// Define o endereço IP do servidor para enviar dados.
 unsigned int serverport = 8888; /// Define a porta do servidor para enviar dados.
 
 const char *ssid = "wIFRN-IoT";         /// Define o SSID da rede WiFi.
 const char *password = "deviceiotifrn"; /// Define a senha da rede WiFi.
 
+
 bool infra;
 int nivelGas;
 int cont = 30;
+
+IPAddress local_ip(10,108,1,201);
+IPAddress gateway(10,108,0,1);
+IPAddress subnet(255,255,0,0);
+
 // Função setup:
 void setup()
 {
@@ -40,8 +46,11 @@ void setup()
   delay(500);
   // Connect to Wifi network.
 
-  Serial.print("Endereço MAC do Esp32: ");
-  Serial.println(WiFi.macAddress());
+  if(!WiFi.config(local_ip, gateway, subnet)){
+  Serial.println("Falha ao configurar o IP fixo.");
+} else {
+  Serial.println("IP fixo aplicado com êxito.");
+}
 
   WiFi.begin(ssid, password); /// Conecta o Esp32 à rede WiFi especificada.
   while (WiFi.status() != WL_CONNECTED)
@@ -56,6 +65,9 @@ void setup()
 
   Serial.print("Endereço MAC do Esp32: ");
   Serial.println(WiFi.macAddress());
+
+  Serial.print("Endereço IP do Esp32:");
+  Serial.println(WiFi.localIP());
 
   String mac = WiFi.macAddress();
   udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
