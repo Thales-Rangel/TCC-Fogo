@@ -29,8 +29,6 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 sql = conexao.cursor() ## Objeto que executará os comandos SQL 
 
-enderecos = []
-
 
 # Função init:
 def init():
@@ -49,35 +47,72 @@ def init():
 	
 # Função Main:
 def main():
+    sql.execute(f"select end_ip from modolos")
+
+    enderecos = sql.fetchall()
+
+    for line in enderecos:
+        print(line)
+
     while True:  # Loop infinito para manter o servidor em execução.
         data, addr = sock.recvfrom(bufferSize)  # Recebe dados de um cliente com o tamanho do buffer especificado.
                                                 # O endereço do remetente é armazenado em addr
         print(f"received message:\n{data} from {addr} \n")  # Imprime a mensagem recebida e o endereço do remetente
-        
-        if b'MAC:' not in data:
-            if addr not in enderecos:
-                enderecos.append(addr)
-        
-            fogo = int(data[16:17])
-            gas = int(data[32:data.find(b'A')])
-            estatus = str(data[data.find(b'A')::])
-        
-            print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
-        
-            sock.sendto(b'V= 700', addr)
-        
-            if b'Alerta!' in data:
-                for i in enderecos:
-                    sock.sendto(b'F', i)
 
+        if (addr[0],) not in enderecos:
             try:
-                sql.execute(f"insert into registros values (default, '22-Ago-2024 12:00h', ?, ?, '26°', ?)", (fogo, gas, estatus))
+                if b'MAC' in data:
+                    sql.execute(f'insert into modolos values (?, null, null, null, null, ?)', (addr[0], data[4::]))
+                else:
+                    sql.execute(f'insert into modolos values (?, null, null, null, null, null)', (addr[0],))
+            
                 conexao.commit()
-                print("Dados guardados com sucesso")
+                print(f"Novo Sensor de fogo cadastrado ao banco com sucesso!")
+
+                sql.execute('select end_ip from modolos')
+                enderecos = sql.fetchall()
+
+                print('Endereços: ')
+                for line in enderecos:
+                     print(line)
             except Exception as e:
-                print(f"Erro na incerção de dados: {e}")
-        else:
-            sock.sendto(b'Vtmnc', addr)
+                 print(f"Não foi possível cadastrar o novo Sensor:")
+                 print(e)
+        
+        fogo = int(data[16:17])
+        gas = int(data[32:data.find(b'A')])
+        status = str(data[data.find(b'A')::])
+
+        print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}')
+
+        #if b'MAC:' not in data:
+        #    try:
+        #        sql.execute(f"insert into modolos values (?, null, null, null, null, null)", (addr))
+        #        conexao.commit()
+        #        print(f"Deu bom colocar o end_ip")
+        #    except Exception as e:
+        #         print(f"Deu erro em inserir dados man, ó o erro aqui: {e}")
+        
+        #    fogo = int(data[16:17])
+        #    gas = int(data[32:data.find(b'A')])
+        #    estatus = str(data[data.find(b'A')::])
+        
+        #    print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
+        
+        #    sock.sendto(b'V= 700', addr)
+        
+        #    if b'Alerta!' in data:
+        #        for i in enderecos:
+        #            sock.sendto(b'F', i)
+
+        #    try:
+        #        sql.execute(f"insert into registros values (default, '22-Ago-2024 12:00h', ?, ?, '26°', ?)", (fogo, gas, estatus))
+        #        conexao.commit()
+        #        print("Dados guardados com sucesso")
+        #    except Exception as e:
+        #        print(f"Erro na incerção de dados: {e}")
+        #else:
+        #    sock.sendto(b'Vtmnc', addr)
 
 
 # Função get_ip_address:
