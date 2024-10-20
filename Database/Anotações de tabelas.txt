@@ -1,0 +1,16 @@
+Funcionamento do banco de dados:
+
+Tabela de módolos (default charset uft8mb4):
+	Endereços IP como chaves primárias varchar(90),
+	"Nome do Esp"/"Nome da sala" varchar(100),
+	Num_sala varchar(50),
+	limt_temp double,
+	limt_gas int,
+	end_mac varchar(100)
+
+Tabela dos registros (default charset utf8mb4):
+	Id de registros chave primária int,
+	ip_modolo como chave estrangeira varchar(90),
+	valor_fogo boolean (ou int),
+	valor_gas int,
+	valor_temp double,

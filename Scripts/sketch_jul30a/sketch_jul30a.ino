@@ -18,8 +18,8 @@ unsigned int localPort = 9999;  /// Define a porta local para comunicação UDP
 char *serverip = "10.108.1.200"; /// Define o endereço IP do servidor para enviar dados.
 unsigned int serverport = 8888; /// Define a porta do servidor para enviar dados.
 
-const char *ssid = "wIFRN-IoT";         /// Define o SSID da rede WiFi.
-const char *password = "deviceiotifrn"; /// Define a senha da rede WiFi.
+const char *ssid = "Redmi 12";         /// Define o SSID da rede WiFi.
+const char *password = "thales5g.123"; /// Define a senha da rede WiFi.
 
 
 bool infra;

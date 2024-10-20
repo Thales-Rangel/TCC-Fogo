@@ -1,9 +1,0 @@
-Funcionamento do banco de dados:
-
-Tabela de módolos:
-	Endereços IP como chaves primárias varchar(90),
-	"Nome do Esp"/"Nome da sala" varchar(100),
-	Num_sala varchar(50),
-	limt_temp double,
-	limt_gas int,
-	end_mac varchar(100)
