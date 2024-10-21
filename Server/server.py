@@ -74,21 +74,24 @@ def main():
             except Exception as e:
                  print(f"Não foi possível cadastrar o novo Sensor:")
                  print(e)
-        
-        fogo = int(data[16:17])
-        gas = int(data[32:data.find(b'A')])
-        status = str(data[data.find(b'A')::])
-
-        print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}')
-
         try:
-             sql.execute(f'insert into registros values (default, ?, ?, ?, ?)', (addr[0], fogo, gas, status))
+            fogo = int(data[16:17])
+            gas = int(data[32:data.find(b'A')])
+            status = str(data[data.find(b'A')::])
 
-             conexao.commit()
-             print('Novo registro cadastrado!')
-        except Exception as e:
-             print('Erro ao fazer registro no banco de dados')
-             print(e)
+            print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}')
+
+            try:
+                sql.execute(f'insert into registros values (default, ?, ?, ?, ?)', (addr[0], fogo, gas, status))
+
+                conexao.commit()
+                print('Novo registro cadastrado!')
+            except Exception as e:
+                print('Erro ao fazer registro no banco de dados')
+                print(e)
+        except ValueError as ve:
+             print("\nErro nos valores dos dados:")
+             print(f"{ve} \n")
 
 # Função get_ip_address:
 def get_ip_address():
