@@ -20,7 +20,6 @@ conexao = mariadb.connect( #Objeto de conexão ao banco de dados
 
 ### Buffer: É usado para armazenar dados recebidos pelo socket antes de serem processados
 
-
 # Criação do socket e do cusor
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -28,7 +27,6 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 ## *socket.SOCK_DGRAM: Indica que o socket usará o protocolo UDP (User Datagram Protocol)
 
 sql = conexao.cursor() ## Objeto que executará os comandos SQL 
-
 
 # Função init:
 def init():
@@ -42,8 +40,6 @@ def init():
                                #O endereço vazio '' indica que o socket aceitará conexões de qualquer IP.
 
 	print(f"UDP server : {get_ip_address()}:{localPort}") #Imprime o endereço IP do servidor e a porta local.
-	
-      
 	
 # Função Main:
 def main():
@@ -85,35 +81,14 @@ def main():
 
         print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}')
 
-        #if b'MAC:' not in data:
-        #    try:
-        #        sql.execute(f"insert into modolos values (?, null, null, null, null, null)", (addr))
-        #        conexao.commit()
-        #        print(f"Deu bom colocar o end_ip")
-        #    except Exception as e:
-        #         print(f"Deu erro em inserir dados man, ó o erro aqui: {e}")
-        
-        #    fogo = int(data[16:17])
-        #    gas = int(data[32:data.find(b'A')])
-        #    estatus = str(data[data.find(b'A')::])
-        
-        #    print(f'Fogo: {fogo}; Gás: {gas}; Estado: {estatus}')
-        
-        #    sock.sendto(b'V= 700', addr)
-        
-        #    if b'Alerta!' in data:
-        #        for i in enderecos:
-        #            sock.sendto(b'F', i)
+        try:
+             sql.execute(f'insert into registros values (default, ?, ?, ?, ?)', (addr[0], fogo, gas, status))
 
-        #    try:
-        #        sql.execute(f"insert into registros values (default, '22-Ago-2024 12:00h', ?, ?, '26°', ?)", (fogo, gas, estatus))
-        #        conexao.commit()
-        #        print("Dados guardados com sucesso")
-        #    except Exception as e:
-        #        print(f"Erro na incerção de dados: {e}")
-        #else:
-        #    sock.sendto(b'Vtmnc', addr)
-
+             conexao.commit()
+             print('Novo registro cadastrado!')
+        except Exception as e:
+             print('Erro ao fazer registro no banco de dados')
+             print(e)
 
 # Função get_ip_address:
 def get_ip_address():
@@ -126,11 +101,6 @@ def get_ip_address():
 	s.close() #Fecha o socket.
 	
 	return ip_address #Retorna o endereço IP.
-	
-
-
-
-
 
 # Bloco principal:
 if __name__ == '__main__': #Verifica se o script está sendo usado diretamente (não importando como módulo).

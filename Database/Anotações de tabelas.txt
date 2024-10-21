@@ -9,8 +9,9 @@ Tabela de módolos (default charset uft8mb4):
 	end_mac varchar(100)
 
 Tabela dos registros (default charset utf8mb4):
-	Id de registros chave primária int,
+	Id de registros chave primária int autoincrement,
 	ip_modolo como chave estrangeira varchar(90),
 	valor_fogo boolean (ou int),
 	valor_gas int,
-	valor_temp double,
+	valor_temp double (colocar depois),
+	status varchar(50)
