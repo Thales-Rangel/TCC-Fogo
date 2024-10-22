@@ -89,6 +89,10 @@ def main():
             except Exception as e:
                 print('Erro ao fazer registro no banco de dados')
                 print(e)
+
+            if status == b'Alerta!':
+                 sock.sendto(b'Fogo!', ("10.0.1.255", 9999))
+
         except ValueError as ve:
              print("\nErro nos valores dos dados:")
              print(f"{ve} \n")
