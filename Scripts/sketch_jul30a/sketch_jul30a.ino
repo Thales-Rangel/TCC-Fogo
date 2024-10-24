@@ -15,20 +15,20 @@ WiFiUDP udp; /// Cria um objeto udp para a comunicação UDP.
 
 char packetBuffer[255];         /// Cria um buffer para armazenar dados recebidos via UDP
 unsigned int localPort = 9999;  /// Define a porta local para comunicação UDP
-char *serverip = "10.108.1.200"; /// Define o endereço IP do servidor para enviar dados.
+char *serverip = "10.0.1.200"; /// Define o endereço IP do servidor para enviar dados.
 unsigned int serverport = 8888; /// Define a porta do servidor para enviar dados.
 
-const char *ssid = "Redmi 12";         /// Define o SSID da rede WiFi.
-const char *password = "thales5g.123"; /// Define a senha da rede WiFi.
+const char *ssid = "TCC-Fogo";         /// Define o SSID da rede WiFi.
+const char *password = "tcc-fogo"; /// Define a senha da rede WiFi.
 
 
 bool infra;
 int nivelGas;
 int cont = 30;
 
-IPAddress local_ip(10,108,1,201);
-IPAddress gateway(10,108,0,1);
-IPAddress subnet(255,255,0,0);
+IPAddress local_ip(10,0,1,201);
+IPAddress gateway(10,0,1,1);
+IPAddress subnet(255,255,255,0);
 
 // Função setup:
 void setup()
