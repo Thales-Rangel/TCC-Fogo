@@ -1,6 +1,11 @@
+body {
+    background-color: #1a1a2E;
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
 .login-page {
-    border: 1px solid red;
-
     width: 30%;
     padding: 20px;
     position: absolute;
@@ -11,15 +16,9 @@
 .header,
 .login {
     /*border: 2px solid orange;*/
-
     text-align: center;
     align-items: center;
-
     margin-bottom: 20px;
-}
-
-.logo img {
-    width: 30%;
 }
 
 .matricula,
@@ -35,8 +34,12 @@
     display: flex;
     flex-flow: row wrap;
     margin: 10px auto 10px auto;
+    border-color: crimson;
+    border-width: 3px;
+    border-radius: 20px;
+    border-style: solid;
     text-align: left;
-    background-color: #e6e6e6;
+    background-color: #1a1a2E;
 }
 
 .form {
@@ -49,20 +52,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    background-color: #1a1a2E;
     color: rgb(91, 90, 90);
 }
 
 #matricula,
 #senha {
     width: 88%;
-    background: none;
+    background: #1a1a2E;
     border: 0;
+    border-radius: 20px;
     outline: none;
-    color: rgb(91, 90, 90);
+    color: white;
 }
-
 #login-button {
     border: 0;
     color: white;
-    background-color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: crimson;
+}
+#img {
+    height: 50px;
+    width: 50px;
+}
+.senha {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 10px auto;
+    border: 3px solid crimson;
+    border-radius: 20px;
+    background-color: #1a1a2E;
+}
+
+.senha input {
+    width: 85%;
+    background: #1a1a2E;
+    border: none;
+    outline: none;
+    color: white;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.senha .toggle-password {
+    cursor: pointer;
+    color: rgb(91, 90, 90);
+    padding: 0 10px;
+}
+
+.senha .toggle-password i {
+    font-size: 20px;
+}
+.matricula input {
+    font-size: 16px;
 }
