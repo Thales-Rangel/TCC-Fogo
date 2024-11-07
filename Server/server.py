@@ -1,6 +1,7 @@
 # Importação da biblioteca socket
 import socket
 import mariadb
+from datetime import datetime
 
 ## socket: Esta biblioteca fornece acesso à interface de rede de baixo nível.
 ## 		   Permitindo a criação e manipulação de sockets.
@@ -78,11 +79,12 @@ def main():
             fogo = int(data[16:17])
             gas = int(data[32:data.find(b'A')])
             status = str(data[data.find(b'A')::])
+            data_hora_atual = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}')
+            print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}; Data e Hora: {data_hora_atual}')
 
             try:
-                sql.execute(f'insert into registros values (default, ?, ?, ?, ?)', (addr[0], fogo, gas, status))
+                sql.execute(f'insert into registros values (default, ?, ?, ?, ?, ?)', (addr[0], fogo, gas, status, data_hora_atual))
 
                 conexao.commit()
                 print('Novo registro cadastrado!')
