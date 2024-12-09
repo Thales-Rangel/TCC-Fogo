@@ -26,7 +26,7 @@ bool infra;
 int nivelGas;
 int cont = 30;
 
-IPAddress local_ip(10,0,1,201);
+IPAddress local_ip(10,0,1,202);
 IPAddress gateway(10,0,1,1);
 IPAddress subnet(255,255,255,0);
 
