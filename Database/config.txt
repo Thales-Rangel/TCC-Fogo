@@ -1,14 +1,65 @@
-create table registrados(
-codigo bigint(20),
-dat_hora timestamp,
-sensor varchar (45),
-estado varchar(20)
-)default char set utf8mb4;
+Eu estou criando uma tela de login e essa tela de login precisas estar conctada a Api do suap e eu quero q o usuario coloque o seu nome de acesso e sua senha do suap do meu site e ele consiga entrar caso faça parte da rede ifrn
+Entendi! Para conectar a tela de login do seu site à API do SUAP e permitir que usuários do IFRN façam login, você pode seguir esses passos básicos:
 
-create table config(
-ip varchar(50) not null, 
-nome_asp varchar (100),
-temperatura int,
-limite_gas int,
-primary key(ip)
-) default char set utf8mb4;
+Configuração da API: Certifique-se de que você tem as credenciais e permissões necessárias para acessar a API do SUAP.
+
+Criação do Formulário de Login: Crie um formulário HTML para que o usuário possa inserir seu nome de acesso e senha.
+
+html
+<form id="loginForm">
+  <label for="username">Nome de Acesso:</label>
+  <input type="text" id="username" name="username" required>
+  <label for="password">Senha:</label>
+  <input type="password" id="password" name="password" required>
+  <button type="submit">Entrar</button>
+</form>
+Autenticação com a API do SUAP: Use JavaScript para capturar os dados do formulário e fazer uma requisição à API do SUAP. Aqui está um exemplo básico de como fazer isso usando fetch:
+
+javascript
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
+  
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  const response = await fetch('URL_DA_API_DO_SUAP', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ username, password })
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    // Verifique se o usuário faz parte da rede IFRN e redirecione ou exiba uma mensagem de sucesso
+  } else {
+    // Exiba uma mensagem de erro
+  }
+});
+Lembre-se de substituir 'URL_DA_API_DO_SUAP' pela URL real da API de autenticação do SUAP.
+
+Tratamento da Resposta: Após receber a resposta da API, verifique se o login foi bem-sucedido e se o usuário pertence à rede IFRN.
+
+Se precisar de mais detalhes ou ajuda específica com a implementação, me avise! Estou aqui para ajudar a transformar sua visão em realidade. 🚀2
+
+
+
+
+
+Como eu verifico se eu tenho essas credenciais para acessar a api do suap
+Para verificar se você tem as credenciais necessárias para acessar a API do SUAP, siga estes passos:
+
+Acesse o portal do SUAP: Faça login no portal do SUAP com suas credenciais atuais.
+
+Verifique as configurações de API: Vá para as configurações do seu perfil ou conta e procure por uma seção relacionada a "API" ou "Credenciais".
+
+Encontre sua chave de API: Se você tiver permissões adequadas, deverá ver uma opção para visualizar ou gerar sua chave de API.
+
+Copie a chave de API: Se encontrar a chave de API, copie-a para usar em suas requisições ao acessar a API do SUAP.
+
+Se você não encontrar essas opções, pode ser necessário solicitar acesso à API ou verificar com o suporte técnico do SUAP para garantir que você tem as permissões necessárias.
+
+Se precisar de mais ajuda ou tiver outras perguntas, estou aqui para ajudar! 😊
+
+Você já tentou seguir esses passos?
