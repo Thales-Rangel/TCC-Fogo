@@ -11,10 +11,19 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <link rel="stylesheet" href="Site/Style/Style-Login.css">
+
+    <link rel="stylesheet" href="Site/Style/responsiveness.css">
+    
+    <link rel="stylesheet" href="Site/Style/interactive mode.css">
+    
 </head>
 
 <body>
     <!--Página de Login (Conectar a API do SUAP)-->
+
+    <button id="themeIcon" onclick="mudarTheme()">
+        <img src="Site/Imgs/lua-icon.png" id="butto-theme" alt="Ícone do tema">
+    </button>
 
     <div class="login-page">
         <div class="header">
@@ -30,7 +39,7 @@
         <form class="login" action="Site/pagina_inicial.html">
             <div class="form">
                 <div class="matricula">
-                    <span class="material-symbols-outlined">
+                    <span style="height: 30px;" class="material-symbols-outlined">
                         badge
                     </span>
                     <input type="text" id="matricula" placeholder="Matrícula" required autocomplete="off">

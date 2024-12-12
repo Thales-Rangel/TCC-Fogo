@@ -1,0 +1,45 @@
+/* Modo Claro */
+body.light-theme {
+    background-color: #CCD0CF;
+    color: black;
+  }
+  
+  table.light-theme {
+    background-color: #f5f5f5;
+    color: #000000;
+  }
+  
+  table.light-theme th {
+    background-color: #dc143c; /* Vermelho mais claro */
+    color: rgb(248, 243, 243);
+  }
+
+table.light-theme td {
+  color: black; /* Texto preto nas células */
+}
+
+table.light-theme tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+  
+  /* Modo Escuro */
+  body.dark-theme {
+    background-color: #1a1a2E;
+    color: white;
+  }
+  
+  table.dark-theme {
+    background-color: #4141454f;
+    color: white;
+  }
+  
+  table.dark-theme th {
+    background-color: #dc143c;
+    color: white;
+  }
+  
+  table.dark-theme tr:nth-child(even) {
+    background-color: #2121274f;
+  }
+  

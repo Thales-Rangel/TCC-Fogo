@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-
-    <link rel="stylesheet" href="/Site/Style/Style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status de Monitoramento</title>
+  <link rel="stylesheet" href="Style/Style.css">
+  <link rel="stylesheet" href="Style/themeTabela.css">
 </head>
 <body>
-    <header>
-    <div id="main">
-        <h1>Tela Principal TCC FOGO🔥</h1><br>
-        <a href="pagina_inicial.html">Página Inicial</a>
-        <a href="dados.html">Dados do Arduino</a>
-     </div>
-     <h1>Entrou é gay</h1>
-    </header>
+  <button id="themeIcon" onclick="TabelaTheme()">
+    <img src="Imgs/lua-icon.png" id="butto-theme" alt="Ícone do tema" />
+  </button>
+  <div class="container">
+  <h1 style="text-align: center;">Status de Monitoramento de Incêndios</h1>
+  <table>
+    <caption>Dados dos Sensores</caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>IP do Módulo</th>
+        <th>Valor Fogo</th>
+        <th>Valor Gás</th>
+        <th>Status</th>
+        <th>Data e Hora</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-dados">
+    </tbody>
+  </table>
+</div>
+<script src="JS/Script-Login.js"></script>
 </body>
 </html>

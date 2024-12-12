@@ -1,0 +1,19 @@
+
+#themeIcon:hover {
+    background-color: #2121274f;
+    cursor: pointer;
+}
+
+.dark-theme {
+    background-color: #1a1a2E;
+}
+
+.light-theme {
+    background-color: #CCD0CF;
+    cursor: pointer;
+}
+
+.dark-theme, .material-symbols-outlined {
+    background-color: #1a1a2E;
+
+}

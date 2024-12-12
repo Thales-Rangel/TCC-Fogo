@@ -1,27 +1,102 @@
 body {
-    background-color: #1a1a2E;
-    font-family: arial;
-    color: white;
+  background-color: #1a1a2E;
+  font-family: Arial;
+  color: white;
+  text-align: center;
+  margin-top: 10%;
 }
-* {
-    margin:0;
+
+table {
+  width: 85%; /* Largura intermediária */
+  border-collapse: separate; /* Necessário para bordas arredondadas */
+  border-spacing: 0; /* Remove espaços entre células */
+  background: #4141454f; /* Fundo da tabela */
+  box-shadow: 0 5px 10px #0b0b2b; /* Sombra semelhante à tela de login */
+  margin: 20px auto; /* Centraliza a tabela */
+  border-radius: 15px; /* Arredondamento das bordas */
+  overflow: hidden; /* Garante que o conteúdo respeite o arredondamento */
 }
-#main {
-    background-color: #FF2E63;
-    width: 100%;
-    text-align: center;
-    padding: 20px;
+
+th, td {
+  text-align: center;
+  padding: 12px; /* Espaçamento interno ajustado */
+  border-bottom: 2px solid #1a1a2E; /* Linha escura dividindo horizontalmente */
+  border-right: 2px solid #4141454f; /* Linha vertical para dividir colunas */
+  color: white; /* Cor do texto */
 }
-header a {
-    background-color: bisque;
-    border-radius: 20px;
-    padding: 10px;
-    width: 450px;
-    color: black;
-    font-weight: 400;
-    text-decoration: none;
+
+th {
+  background-color: #dc143c; /* Fundo dos cabeçalhos em vermelho */
+  color: white; /* Cor do texto do cabeçalho */
+  border-bottom: 2px solid #4141454f; /* Linha escura abaixo do cabeçalho */
+  border-right: 1px solid #1a1a2E; /* Linha vertical para os cabeçalhos */
 }
-header a:hover {
-    background-color: none;
-    color: white;
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+tr:nth-child(even) {
+  background-color: #2121274f; /* Fundo alternado para linhas pares */
+}
+
+tr:hover {
+  background-color: #1414374f; /* Efeito de hover: fundo vermelho */
+  color: white; /* Texto permanece branco ao passar o cursor */
+}
+
+tr:last-child td {
+  border-bottom: none; /* Remove a borda inferior da última linha */
+}
+
+/* Ajuste para bordas arredondadas no cabeçalho e rodapé */
+thead tr:first-child th:first-child {
+  border-top-left-radius: 15px;
+}
+
+thead tr:first-child th:last-child {
+  border-top-right-radius: 15px;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px;
+}
+
+caption {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white; /* Cor do título */
+}
+
+#butto-theme {
+  width: 30px;
+}
+
+#themeIcon {
+  background-color: #4141454f;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  margin-top: 5%;
+  margin-right: 5%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  /* Alterado para deixar a bolinha mais quadrada */
+  border-radius: 15px; /* Ajuste para bordas mais quadradas */
+  border: 3px solid #dc143c;
+  cursor: pointer;
+  /* Centraliza o ícone dentro da bolinha */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#themeIcon:hover {
+  background-color: #2121274f;
 }
