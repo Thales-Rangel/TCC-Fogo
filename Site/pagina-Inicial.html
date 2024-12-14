@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Inicial</title>
+    <style>
+        body {
+            background-color: #1a1a2E;
+            font-family: Arial;
+            color: white;
+        }
+
+        header {
+            background-color: #04042c;
+            width: 90%;
+            margin-left: 3%;
+            margin-top: 2%;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 20px;
+            box-shadow: 5px 5px 10px #04042c8d;
+            text-align: center;
+        }
+        #button-Variantes {
+            margin-top: 10px;
+            background-color: #dc143c;
+            color: white;
+            margin-left: 57px;
+            font-size: 14px;
+            padding: 8px, 12px;
+            text-align: center;
+            width: 10%;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+        }
+        .TCC-logo {
+            width: 250px;
+            border-radius: 20px;
+            margin-top: 5%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tela Inicial TCC Fogo🔥</h1>
+    </header>
+    <div class="container">
+        <div class="variantes">
+            <img src="Imgs/TCC-Fogo-logo.png" class="TCC-logo"><br>
+            <button type="button" id="button-Variantes" onclick="Variantes()">Verificar Variantes</button>
+        </div>
+    </div>
+    <script>
+        function Variantes() {
+        let botao_variantes = document.getElementById('button-Variantes');
+
+         botao_variantes = window.location.href = 'pagina-Secundaria.html'
+        }
+    </script>
+</body>
+</html>
