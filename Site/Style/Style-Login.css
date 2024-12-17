@@ -129,7 +129,7 @@ body {
 
 #themeIcon {
     background-color: #4141454f;
-    position: fixed;
+    position: absolute;
     top: 10px;
     right: 10px;
     margin-top: 5%;
