@@ -12,7 +12,7 @@ function TabelaTheme() {
       corpo.classList.add('light-theme');
       tabela.classList.remove('dark-theme');
       tabela.classList.add('light-theme');
-      IconTheme.src = 'Imgs/sol-icon.png'; // Ícone do modo claro
+      IconTheme.src = 'Imgs/icon/sol-icon.png'; // Ícone do modo claro
       paragrafo.style.color = '#000';
       themeIcon.style.borderColor = '#ffffff';
     } else {
@@ -21,7 +21,7 @@ function TabelaTheme() {
       corpo.classList.add('dark-theme');
       tabela.classList.remove('light-theme');
       tabela.classList.add('dark-theme');
-      IconTheme.src = 'Imgs/lua-icon.png'; // Ícone do modo escuro
+      IconTheme.src = 'Imgs/icon/lua-icon.png'; // Ícone do modo escuro
       paragrafo.style.color = '#ffff';
       themeIcon.style.borderColor = '#dc143c';
     }

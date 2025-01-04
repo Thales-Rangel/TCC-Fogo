@@ -58,7 +58,7 @@ function mudarTheme() {
         sombraLoginPage.style.boxShadow = '5px 5px 10px rgba(0, 0, 0, 0.551)';
         borderTheme.style.borderColor = 'white';
 
-        ThemeIcon.src = 'Site/Imgs/sol-icon.png';
+        ThemeIcon.src = 'Site/Imgs/icon/sol-icon.png';
 
         // Alterando o fundo do ícone da senha para modo claro
         if (IconSenha) {
@@ -79,7 +79,7 @@ function mudarTheme() {
         corpo.classList.remove('light-theme');
         corpo.classList.add('dark-theme');
 
-        telaLogin.style.backgroundColor = '#4141454f';
+        telaLogin.style.backgroundColor = '#26263f';
         botaoLogin.style.backgroundColor = '#dc143c';
         lightCabecalho.style.color = 'white';
         lightParagrafo.style.color = 'white';
@@ -96,7 +96,7 @@ function mudarTheme() {
         sombraLoginPage.style.boxShadow = '5px 5px 10px #0b0b2b'; // Remover sombra
         borderTheme.style.borderColor = '#dc143c'
 
-        ThemeIcon.src = 'Site/Imgs/lua-icon.png';
+        ThemeIcon.src = 'Site/Imgs/icon/lua-icon.png';
 
         // Alterando o fundo do ícone da senha para modo escuro
         if (IconSenha) {
