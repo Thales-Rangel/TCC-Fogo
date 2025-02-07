@@ -44,6 +44,7 @@ function TabelaTheme() {
                 <td>${dado.ip_modolo}</td>
                 <td>${dado.valor_fogo}</td>
                 <td>${dado.valor_gas}</td>
+                <td>${dado.temp} C°</td>
                 <td>${dado.status}</td>
                 <td>${new Date(dado.data_hora).toLocaleString()}</td>
             `;

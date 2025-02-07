@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 
 // Configuração do banco de dados
-const db = mysql.createPool({
+const db = mysql2.createPool({
     host: 'localhost',
     user: 'root',
     password: 'tcc-fogo',
@@ -14,7 +14,7 @@ const db = mysql.createPool({
 });
 
 app.get('/dados', (req, res) => {
-    const query = 'SELECT * FROM registros ORDER BY id DESC';
+    const query = 'SELECT * FROM registros ORDER BY id DESC LIMIT 30';
     db.query(query, (err, results) => {
         if (err) {
             console.error(err);
