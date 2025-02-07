@@ -1,6 +1,7 @@
 body {
     background-color: #1a1a2E;
     margin: 0;
+    transition: background-color 0.5s, color 0.5s;
 }
 * {
     box-sizing: border-box;
@@ -9,10 +10,10 @@ body {
     width: 30%;
     padding: 20px;
     position: absolute;
-    background-color: #4141454f;
+    background-color: #26263f;
     border-radius: 20px;
     box-shadow: 5px 5px 10px #0b0b2b;
-    top: 15%;
+    top: 25%;
     left: 35%;
 }
 
@@ -21,7 +22,6 @@ body {
     /*border: 2px solid orange;*/
     text-align: center;
     align-items: center;
-    margin-bottom: 20px;
 }
 .matricula,
 .senha {
@@ -40,14 +40,14 @@ body {
     flex-flow: row wrap;
     margin: 10px auto 10px auto;
     border-color: #dc143c;
-    border-width: 3px;
+    border-width: 4px;
     border-radius: 20px;
     border-style: solid;
     text-align: left;
     background-color: #1a1a2E;
 }
 .form {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .material-symbols-outlined {
@@ -59,7 +59,7 @@ body {
     align-items: center;
     border-radius: 20px;
     background-color: #1a1a2E;
-    color: rgb(91, 90, 90);
+    color:#5b5a5a;
 }
 #matricula,
 #senha {
@@ -80,6 +80,7 @@ body {
     border-radius: 20px;
     padding: 10px;
     background-color: #dc143c;
+    cursor: pointer;
 }
 
 #login-button:hover {
@@ -96,7 +97,7 @@ body {
     flex-flow: row nowrap;
     align-items: center;
     margin: 10px auto;
-    border: 3px solid crimson;
+    border: 4px solid crimson;
     border-radius: 20px;
     background-color: #1a1a2E;
 }
@@ -108,19 +109,21 @@ body {
     color: white;
     padding-left: 5px;
     font-size: 16px;
+    margin-left: 5px;
 }
 
 .senha .toggle-password {
     cursor: pointer;
-    color: rgb(91, 90, 90);
+    color:#5b5a5a;
     padding: 0 20px;
 }
 
 .senha .toggle-password i {
-    font-size: 20px;
+    font-size: 25px;
 }
 .matricula input {
     font-size: 16px;
+    margin-left: 5px
 }
 
 #butto-theme {
@@ -130,12 +133,12 @@ body {
 #themeIcon {
     background-color: #4141454f;
     position: absolute;
+    width: 50px;
+    height: 50px;
     top: 10px;
     right: 10px;
     margin-top: 5%;
     margin-right: 5%;
-    width: 40px;
-    height: 40px;
     text-align: center;
     /* Alterado para deixar a bolinha mais quadrada */
     border-radius: 15px; /* Ajuste para bordas mais quadradas */
@@ -145,6 +148,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease;
 }
 
 #themeIcon:hover {
@@ -154,4 +158,22 @@ body {
 #themeIcon .material-symbols-outlined {
     font-size: 20px;
     color: white;
+}
+
+.iconUser {
+    height: 30px;
+}
+
+.iconPassword {
+    height: 30px;
+}
+
+.tcc-fogo-logo {
+    width: 220x;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    filter: drop-shadow(5px 10px 3px black);
+    transform: translate(-50%, -50%); /* Centraliza horizontal e verticalmente */
 }
