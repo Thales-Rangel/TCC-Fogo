@@ -1,6 +1,7 @@
 # Importação da biblioteca socket
 import socket
 import mariadb
+from datetime import datetime
 
 ## socket: Esta biblioteca fornece acesso à interface de rede de baixo nível.
 ## 		   Permitindo a criação e manipulação de sockets.
@@ -75,14 +76,22 @@ def main():
                  print(f"Não foi possível cadastrar o novo Sensor:")
                  print(e)
         try:
-            fogo = int(data[16:17])
-            gas = int(data[32:data.find(b'A')])
-            status = str(data[data.find(b'A')::])
+            #Captura dos dados enviados:
+            fogo = int(data[data.find(b'F:')+2 : data.find(b'G')])
+            
+            gas = int(data[data.find(b'G:')+2 : data.find(b'T:')])
+            
+            temp = int(data[data.find(b'T:')+2 : data.find(b'S:')])
+            
+            status = str(data[data.find(b'S:')+3::])
+            
+            data_hora_atual = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            print(f'Fogo: {fogo}; Gás: {gas}; Estado: {status}')
+            #Mostra dos dados capturados:
+            print(f'Fogo: {fogo}; Gás: {gas}; Temperatura: {temp}; Estado: {status}; Data e Hora: {data_hora_atual}')
 
             try:
-                sql.execute(f'insert into registros values (default, ?, ?, ?, ?)', (addr[0], fogo, gas, status))
+                sql.execute(f'insert into registros values (default, ?, ?, ?, ?, ?, ?)', (addr[0], fogo, gas, temp, status, data_hora_atual))
 
                 conexao.commit()
                 print('Novo registro cadastrado!')

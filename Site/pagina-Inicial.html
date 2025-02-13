@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela Inicial</title>
+    <link rel="shortcut icon" href="Imgs/icon/tcc-icon-brazao.png" type="image/x-icon"> <!--Icone do titúlo ds página-->
     <style>
-        body {
+        .body {
             background-color: #1a1a2E;
             font-family: Arial;
             color: white;
+        }
+
+        .dark-theme {
+            background-color: #1a1a2E;
+        }
+
+        .light-theme {
+            background-color: #CCD0CF;
+            cursor: pointer;
         }
 
         header {
@@ -29,6 +39,12 @@
             height: 40px;
             border: none;
             border-radius: 10px;
+            filter: drop-shadow(5px 10px 3px rgba(0, 0, 0, 0.426));
+            cursor: pointer;
+        }
+
+        #button-Variantes:hover {
+            background-color: #bf072c;
         }
 
         .TCC-logo {
@@ -41,12 +57,103 @@
             justify-content: center;
             align-items: center;
         }
+
+        #butto-theme {
+            width: 30px;
+        }
+
+        #themeIcon {
+            background-color: #4141454f;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 10px;
+            right: 10px;
+            margin-top: 5%;
+            margin-right: 5%;
+            text-align: center;
+            /* Alterado para deixar a bolinha mais quadrada */
+            border-radius: 15px;
+            /* Ajuste para bordas mais quadradas */
+            border: 3px solid #dc143c;
+            cursor: pointer;
+            /* Centraliza o ícone dentro da bolinha */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        #themeIcon:hover {
+            background-color: #2121274f;
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .TCC-logo {
+                width: 100%;
+                margin-top: 50%;
+            }
+
+            #button-Variantes {
+                width: 40%;
+            }
+
+        }
+
+        @media screen and (min-width: 481px) and (max-width: 768px) {
+
+            .TCC-logo {
+                margin-top: 15%;
+                width: 60%;
+            }
+
+            #button-Variantes {
+                width: 35%;
+                white-space: nowrap;
+                height: 50px;
+                font-size: 17px;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+
+            .TCC-logo {
+                width: 40%;
+                margin-top: 30%;
+            }
+
+            #button-Variantes {
+                width: 20%;
+                height: 50px;
+                font-size: 20px;
+            }
+
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+
+            .TCC-logo {
+                width: 40%;
+                margin-top: 30%;
+            }
+
+            #button-Variantes {
+                width: 20%;
+                height: 50px;
+                font-size: 20px;
+            }
+
+        }
     </style>
 </head>
 
-<body>
+<body class="dark-theme">
+    <button id="themeIcon" onclick="mudarTheme()">
+        <img src="Imgs/icon/lua-icon.png" id="butto-theme" alt="Ícone do tema">
+    </button>
     <header>
-        <img src="Imgs/TCC-Fogo-logo-removebg-preview.png" class="TCC-logo">
+        <img src="Imgs/logo/TCC-Fogo-logo.png" class="TCC-logo">
     </header>
     <div class="container">
         <div class="variantes">
@@ -57,8 +164,27 @@
     <script>
         function Variantes() {
             let botao_variantes = document.getElementById('button-Variantes');
-
             botao_variantes = window.location.href = 'pagina-Secundaria.html'
+        }
+        // função para mudar o tma da Tela Inicial
+        function mudarTheme() {
+            const corpo = document.querySelector('body');
+            const IconTheme = document.querySelector('#butto-theme');
+            const themeIcon = document.querySelector('#themeIcon');
+
+            if (corpo.classList.contains('dark-theme')) {
+                // Modo Claro
+                corpo.classList.remove('dark-theme');
+                corpo.classList.add('light-theme');
+                IconTheme.src = 'Imgs/icon/sol-icon.png'; // Ícone do modo claro
+                themeIcon.style.borderColor = '#ffffff';
+            } else {
+                // Modo Escuro
+                corpo.classList.remove('light-theme');
+                corpo.classList.add('dark-theme');
+                IconTheme.src = 'Imgs/icon/lua-icon.png'; // Ícone do modo escuro
+                themeIcon.style.borderColor = '#dc143c';
+            }
         }
     </script>
 </body>

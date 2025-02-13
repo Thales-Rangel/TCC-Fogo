@@ -4,6 +4,7 @@ body {
   color: white;
   text-align: center;
   margin-top: 10%;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 table {
@@ -95,6 +96,7 @@ caption {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.3s ease;
 }
 
 #themeIcon:hover {
