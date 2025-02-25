@@ -139,6 +139,7 @@ void loop()
   udp.beginPacket(serverip, serverport); /// Inicia um pacote UDP para o servidor.
   char buf[30];                          /// Cria um buffer para a mensagem.
   char buf1[30];
+  char buf2[30];
 
   unsigned long testeID = millis(); /// Obtém o tempo em ms desde que o Esp32 foi ligado.
 
@@ -148,19 +149,21 @@ void loop()
 
     if (nivelGas < an)
     {
-      sprintf(bufE, "AOk");
+      sprintf(bufE, "S: Ok");
     }
     else if (nivelGas >= an & nivelGas < lGas)
     {
-      sprintf(bufE, "Anormal");
+      sprintf(bufE, "S: Anormal");
     }
 
-    sprintf(buf, "Sensor do fogo: %lu", infra); /// Formata a mensagem com o valor do fogo.
+    sprintf(buf, "F: %lu", infra); /// Formata a mensagem com o valor do fogo.
     delay(200);
-    sprintf(buf1, " Sensor de Gas: %lu ", nivelGas);
+    sprintf(buf1, "G: %lu ", nivelGas);
+    sprintf(buf2, "T: 0 ");
 
     udp.printf(buf); /// Envia a mensagem via UDP.
     udp.printf(buf1);
+    udp.printf(buf2);
     udp.printf(bufE);
     udp.endPacket(); /// Finaliza o pacote UDP.
     delay(500);
@@ -197,13 +200,16 @@ void alertaFogo()
     char bufA[30];
     char bufB[30];
     char bufC[30];
-    sprintf(bufA, "Sensor do Fogo: %lu ", infra);
-    sprintf(bufB, "Sensor do Gas: %lu ", nivelGas);
-    sprintf(bufC, "Alerta!");
+    char bufD[30];
+    sprintf(bufA, "F: %lu ", infra);
+    sprintf(bufB, "G: %lu ", nivelGas);
+    sprintf(bufC, "T: 0 ");
+    sprintf(bufD, "S: Alerta!");
     disparaSirene(pinLed, 500);
     udp.printf(bufA);
     udp.printf(bufB);
     udp.printf(bufC);
+    udp.printf(bufD);
     udp.endPacket();
     delay(500);
     infra = digitalRead(pinInfra);
