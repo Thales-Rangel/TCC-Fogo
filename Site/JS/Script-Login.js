@@ -113,3 +113,43 @@ function mudarTheme() {
         });
     }
 }
+
+function login(event) {
+    event.preventDefault(); // Evita o recarregamento da página
+
+    let inputLoginUser = document.getElementById("matricula");
+    let inputLoginSenha = document.getElementById("senha")
+    let messageAlert = document.getElementById("alert");
+
+    if (inputLoginUser.value.length < 14) {
+        messageAlert.innerHTML = 'O nome de usuário deve ter pelo menos 14 caracteres';
+        messageAlert.style.color = '#dc143c';
+        messageAlert.style.fontSize = '16px'
+        messageAlert.style.fontFamily = 'Arial'
+        return;
+    }
+    if (isNaN(inputLoginUser.value) ) {
+        messageAlert.innerHTML = 'O nome de usuário deve conter apenas Números';
+        messageAlert.style.color = '#dc143c';
+        messageAlert.style.fontSize = '16px'
+        messageAlert.style.fontFamily = 'Arial'
+        return;
+
+    }
+    if (inputLoginSenha.value.length < 8) {
+        messageAlert.innerHTML = 'A sua senha deve ter pelo menos 8 digitos';
+        messageAlert.style.color = '#dc143c';
+        messageAlert.style.fontSize = '16px'
+        messageAlert.style.fontFamily = 'Arial'
+        return;
+    }else {
+        messageAlert.innerHTML = 'Autenticando....';
+        messageAlert.style.color = 'green';
+        messageAlert.style.fontSize = '16px'
+        messageAlert.style.fontFamily = 'Arial'
+
+        setTimeout(() => {
+            window.location.href = suap.getLoginURL();
+        }, 3000);
+    }
+}
