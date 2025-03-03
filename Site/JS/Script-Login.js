@@ -124,29 +124,25 @@ function login(event) {
     if (isNaN(inputLoginUser.value) ) {
         messageAlert.innerHTML = 'O nome de usuário deve conter apenas Números';
         messageAlert.style.color = '#dc143c';
-        messageAlert.style.fontSize = '16px'
         messageAlert.style.fontFamily = 'Arial'
         return;
     }
     if (inputLoginUser.value.length < 14) {
         messageAlert.innerHTML = 'O nome de usuário deve ter pelo menos 14 caracteres';
         messageAlert.style.color = '#dc143c';
-        messageAlert.style.fontSize = '16px'
         messageAlert.style.fontFamily = 'Arial'
         return;
     }
     if (inputLoginSenha.value.length < 8) {
         messageAlert.innerHTML = 'A sua senha deve ter pelo menos 8 digitos';
         messageAlert.style.color = '#dc143c';
-        messageAlert.style.fontSize = '16px'
         messageAlert.style.fontFamily = 'Arial'
         return;
     }else {
         messageAlert.innerHTML = 'Autenticando....';
-        messageAlert.style.color = 'green';
-        messageAlert.style.fontSize = '16px'
+        messageAlert.style.color = '#00F026';
         messageAlert.style.fontFamily = 'Arial'
-
+        messageAlert.style.fontWeight = 'bold'
         setTimeout(() => {
             window.location.href = suap.getLoginURL();
         }, 3000);

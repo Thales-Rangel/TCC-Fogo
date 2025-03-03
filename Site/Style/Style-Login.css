@@ -13,8 +13,9 @@ body {
     background-color: #26263f;
     border-radius: 20px;
     box-shadow: 5px 5px 10px #0b0b2b;
-    top: 25%;
-    left: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .header,
@@ -176,4 +177,8 @@ body {
     top: 15%;
     filter: drop-shadow(5px 10px 3px black);
     transform: translate(-50%, -50%); /* Centraliza horizontal e verticalmente */
+}
+#alert {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
 }
