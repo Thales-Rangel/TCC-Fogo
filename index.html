@@ -18,7 +18,7 @@
         <img src="Site/Imgs/icon/lua-icon.png" id="butto-theme" alt="Ícone do tema">
     </button>
     <div class="login-page">
-        <div class="header">
+        <header class="header">
             <h1 style="color: white; font-family: Arial; display: flex; align-items: center; justify-content: center; gap: 0px;">
                 Login Fire
                 <span>
@@ -27,16 +27,16 @@
             </h1>
             <p style="color: white; font-family: arial;">Use o seu usuário do Suap para se conectar ao nosso sistema</p>
             <div id="alert"></div>
-        </div>
+        </header>
         <form class="login">
-            <div class="form">
-                <div class="matricula">
+            <main class="form">
+                <section class="matricula">
                     <span style="height: 30px;" class="material-symbols-outlined">
                         <img src="Site/Imgs/icon/user-icon.svg" class="iconUser">
                     </span>
                     <input type="text" id="matricula" placeholder="Matrícula" required autocomplete="off">
-                </div>
-                <div class="senha">
+                </section>
+                <section class="senha">
                     <span class="material-symbols-outlined">
                         <img src="Site/Imgs/icon/password-icon.svg" class="iconPassword">
                     </span>
@@ -44,8 +44,8 @@
                     <span class="toggle-password">
                         <i class="bi bi-eye-fill" onclick="aparecer()" id="btn-senha"></i>
                     </span>
-                </div>
-            </div>
+                </section>
+            </main>
             <button type="submit" onclick="login(event)" id="login-button">Conecte - se</button>
         </form>
     </div>

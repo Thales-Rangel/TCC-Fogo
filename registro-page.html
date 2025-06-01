@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Registro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="Site/Imgs/icon/tcc-icon-brazao.png" type="image/x-icon">
+    <style>
+        body {
+            background:#1a1a2E;
+            font-family: Arial;
+            color: whitesmoke;
+        }
+        .registro-box {
+        width: 50%;
+        padding: 20px;
+        position: absolute;
+        background-color: #26263f;
+        border-radius: 20px;
+        box-shadow: 5px 5px 10px #0b0b2b;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+        form {
+            display: flex;
+            align-items: left;
+            flex-direction: column;
+        }
+        
+        #idInputUser, #idInputPassword, #idConfirmPassword {
+        width: 25%;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 15px;
+        margin: 10px auto 10px auto;
+        outline: none;
+        background-color: #1a1a2E;
+        color: white;
+        box-shadow: 5px 5px 10px #0b0b21;
+        border: none;
+        }
+
+    header {
+    text-align: center;
+    color: white;
+    font: normal 20px Arial;
+    margin-top: 80px;
+}
+i {
+    position: absolute;
+    color: gray;
+    transform: scale(1.7);
+    cursor: pointer;
+    padding: 10px;
+}
+#btn-Registro {
+    border: 0;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 25%;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #dc143c;
+    cursor: pointer;
+    transition: 1s ease;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.277);
+}
+#btn-Registro:hover {
+    background-color: #f65b7a;
+    transform: scale(1.05);
+    transition: 1s ease;
+}
+
+.line-row {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+.logo {
+    width: 350px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tela de Registro</h1>
+        <p>Se Registre-se</p>
+    </header>
+    <section class="registro-box">
+        <main>
+            <form action="index.html">
+                <section id="section-cadastrar">
+                    <div id="registrar-user">
+                        <label for="idInputUser">Usuário:</label><br>
+                        <input type="text" id="idInputUser" name="userName" placeholder="Informe o Usuário">
+                    </div>
+                    <div id="registrar-password">
+                        <label for="idInputPassword">Senha:</label><br>
+                        <input type="password" id="idInputPassword" name="password" placeholder="Informe a Sua Senha">
+                        <span class="toggle-password">
+                        <i class="bi bi-eye-fill" onclick="aparecer()" id="btn-senha"></i>
+                    </span>
+                    </div>
+                    <div id="confirme-password">
+                        <label for="idConfirmPassword">Confirmar Senha:</label><br>
+                        <input type="password" id="idConfirmPassword" name="passwordConf" placeholder="Confirme a Sua Senha">
+                        <span class="toggle-password">
+                        <i class="bi bi-eye-fill" onclick="passwordConfrim()" id="btn-Confrimsenha"></i>
+                    </span>
+                    <div>
+                        <button type="submit" id="btn-Registro">Registre-se</button>
+                    </div>
+                    <div class="line-row"><img src="Site/Imgs/logo/tcc-icon-logo.png" class="logo"></div>
+                </section>
+            </form>
+        </main>
+    </section>
+    <script>
+    function aparecer() {
+    let inputPass = document.getElementById('idInputPassword')
+    let btn = document.getElementById('btn-senha')
+    //Sai do modo oculto
+    if(inputPass.type === 'password') {
+        inputPass.setAttribute('type', 'text')
+
+        btn.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+    }
+    //Colocar novamente em modo oculto
+    else {
+        inputPass.setAttribute('type', 'password')
+
+        btn.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+    }
+}
+function passwordConfrim() {
+    let inputConfirm = document.getElementById('idConfirmPassword')
+    let btnConfrim = document.getElementById('btn-Confrimsenha')
+
+    //Sai do modo oculto
+    if(inputConfirm.type === 'password') {
+        inputConfirm.setAttribute('type', 'text')
+        btnConfrim.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+    }
+    //Colocar novamente em modo oculto
+    else {
+        inputConfirm.setAttribute('type', 'password')
+        btnConfrim.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+    }
+}
+    </script>
+</body>
+</html>

@@ -13,7 +13,7 @@ body {
     background-color: #26263f;
     border-radius: 20px;
     box-shadow: 5px 5px 10px #0b0b2b;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -84,11 +84,6 @@ body {
     cursor: pointer;
 }
 
-#login-button:hover {
-    background-color: #fa0636bd;
-}
-
-
 #img {
     height: 50px;
     width: 50px;
@@ -132,7 +127,7 @@ body {
 }
 
 #themeIcon {
-    background-color: #4141454f;
+    background-color: #1a1a2E;
     position: absolute;
     width: 50px;
     height: 50px;
@@ -154,6 +149,7 @@ body {
 
 #themeIcon:hover {
     background-color: #2121274f;
+    transform: scale(1.05);
 }
 
 #themeIcon .material-symbols-outlined {

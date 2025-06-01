@@ -150,6 +150,7 @@
 </head>
 
 <body class="dark-theme">
+    <p><strong>Seja Bem-Vindo</strong><span id="nome"></span></p>
     <button id="themeIcon" onclick="mudarTheme()">
         <img src="Imgs/icon/lua-icon.png" id="butto-theme" alt="Ícone do tema">
     </button>
@@ -162,8 +163,31 @@
             <button type="button" id="button-Variantes" onclick="Variantes()">Verificar Variantes</button>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/Server/js.cookie.js"></script>
+	<script src="/Server/settings.js"></script>
+  	<script src="/Server/server.js"></script>
     <script>
-        function Variantes() {
+      var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+      suap.init();
+      $(document).ready(function () {
+      		//$("#suap-login-button").attr('href', suap.getLoginURL());
+          if (suap.isAuthenticated()) {
+              var scope = suap.getToken().getScope();
+              var callback = function (response) {
+                  //$("#ident").text(JSON.stringify(response, null, 4)); //aqui vai mostrar todos os dados possíveis.
+                  $("#nome").text(response.nome);
+                  //aqui você vai adicionando os outros campos possíveis.
+              };
+             suap.getResource(scope, callback);
+          }
+      });
+      $("#suap-logout-button").click(function(){
+          suap.logout();
+          window.location.href = "index.html";
+      });
+
+      function Variantes() {
             let botao_variantes = document.getElementById('button-Variantes');
             botao_variantes = window.location.href = 'pagina-Secundaria.html'
         }
@@ -189,5 +213,4 @@
         }
     </script>
 </body>
-
 </html>

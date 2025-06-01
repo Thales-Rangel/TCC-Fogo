@@ -57,6 +57,7 @@ function mudarTheme() {
         bordaMatricula.style.borderColor = '#E5E5E5E5';
         sombraLoginPage.style.boxShadow = '5px 5px 10px rgba(0, 0, 0, 0.551)';
         borderTheme.style.borderColor = 'white';
+        borderTheme.style.backgroundColor = '#908e8e';
 
         ThemeIcon.src = 'Site/Imgs/icon/sol-icon.png';
 
@@ -95,6 +96,7 @@ function mudarTheme() {
         bordaMatricula.style.borderColor = '#dc143c';
         sombraLoginPage.style.boxShadow = '5px 5px 10px #0b0b2b'; // Remover sombra
         borderTheme.style.borderColor = '#dc143c'
+        borderTheme.style.backgroundColor = '#1a1a2E';
 
         ThemeIcon.src = 'Site/Imgs/icon/lua-icon.png';
 
@@ -123,24 +125,24 @@ function login(event) {
 
     if (isNaN(inputLoginUser.value) ) {
         messageAlert.innerHTML = 'O nome de usuário deve conter apenas Números';
-        messageAlert.style.color = '#dc143c';
+        messageAlert.style.color = ' #dc143c';
         messageAlert.style.fontFamily = 'Arial'
         return;
     }
-    if (inputLoginUser.value.length < 14) {
+    else if (inputLoginUser.value.length < 14) {
         messageAlert.innerHTML = 'O nome de usuário deve ter pelo menos 14 caracteres';
-        messageAlert.style.color = '#dc143c';
+        messageAlert.style.color = ' #dc143c';
         messageAlert.style.fontFamily = 'Arial'
         return;
-    }
-    if (inputLoginSenha.value.length < 8) {
+    } 
+    else if (inputLoginSenha.value.length < 8) {
         messageAlert.innerHTML = 'A sua senha deve ter pelo menos 8 digitos';
-        messageAlert.style.color = '#dc143c';
+        messageAlert.style.color = ' #dc143c';
         messageAlert.style.fontFamily = 'Arial'
         return;
     }else {
         messageAlert.innerHTML = 'Autenticando....';
-        messageAlert.style.color = '#00F026';
+        messageAlert.style.color = ' #0ccf82'; // tons de verde: #099452; #00F026;
         messageAlert.style.fontFamily = 'Arial'
         messageAlert.style.fontWeight = 'bold'
         setTimeout(() => {
