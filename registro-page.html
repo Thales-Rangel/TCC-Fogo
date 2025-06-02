@@ -28,6 +28,10 @@
             align-items: left;
             flex-direction: column;
         }
+
+        #registrar-password, #confirme-password,#btn-Registro{
+            margin-top: 10px;
+        }
         
         #idInputUser, #idInputPassword, #idConfirmPassword {
         width: 25%;
@@ -42,48 +46,90 @@
         border: none;
         }
 
-    header {
-    text-align: center;
-    color: white;
-    font: normal 20px Arial;
-    margin-top: 80px;
-}
-i {
-    position: absolute;
-    color: gray;
-    transform: scale(1.7);
-    cursor: pointer;
-    padding: 10px;
-}
-#btn-Registro {
-    border: 0;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    width: 25%;
-    border-radius: 20px;
-    padding: 10px;
-    background-color: #dc143c;
-    cursor: pointer;
-    transition: 1s ease;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.277);
-}
-#btn-Registro:hover {
-    background-color: #f65b7a;
-    transform: scale(1.05);
-    transition: 1s ease;
-}
+        header {
+        text-align: center;
+        color: white;
+        font: normal 20px Arial;
+        margin-top: 80px;
+        }
+        i {
+            position: absolute;
+            color: gray;
+            cursor: pointer;
+            padding: 10px;
+        }
+        #btn-senha {
+            font-size: 25px;
+            top: 46%;
+            left: 26%;
+            transform: translate(-50%, -50%);
+        }
+        #btn-Confrimsenha {
+            font-size: 25px;
+            top: 70%;
+            left: 26%;
+            transform: translate(-50%, -50%);
+        }
+        #btn-Registro {
+            border: 0;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            width: 25%;
+            border-radius: 20px;
+            padding: 10px;
+            background-color: #dc143c;
+            cursor: pointer;
+            transition: 1s ease;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.277);
+        }
+        #btn-Registro:hover {
+            background-color: #f65b7a;
+            transform: scale(1.05);
+            transition: 1s ease;
+        }
 
-.line-row {
-    position: absolute;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-}
-.logo {
-    width: 350px;
-}
+        .line-row {
+            position: absolute;
+            top: 50%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+        }
+        .logo {
+            width: 350px;
+        }
+        #alert {
+            display: none;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0ccf8124;
+            color: #0ccf82;
+            border: 2px solid #0ccf8178;
+            font-size: 16px;
+            width: 12%;
+            padding: 15px;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+        #alert.erro {
+            display: none;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #dc143c41;
+            color: #dc143c;
+            border: 2px solid #dc143c7f;
+            font-size: 16px;
+            width: 24%;
+            text-align: center;
+            padding: 15px;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -93,33 +139,34 @@ i {
     </header>
     <section class="registro-box">
         <main>
-            <form action="index.html">
+            <form>
                 <section id="section-cadastrar">
                     <div id="registrar-user">
                         <label for="idInputUser">Usuário:</label><br>
-                        <input type="text" id="idInputUser" name="userName" placeholder="Informe o Usuário">
+                        <input type="text" id="idInputUser" autocomplete="off" name="userName" placeholder="Informe o Usuário">
                     </div>
                     <div id="registrar-password">
                         <label for="idInputPassword">Senha:</label><br>
-                        <input type="password" id="idInputPassword" name="password" placeholder="Informe a Sua Senha">
+                        <input type="password" id="idInputPassword" name="password" autocomplete="off" placeholder="Informe a Sua Senha">
                         <span class="toggle-password">
                         <i class="bi bi-eye-fill" onclick="aparecer()" id="btn-senha"></i>
                     </span>
                     </div>
                     <div id="confirme-password">
                         <label for="idConfirmPassword">Confirmar Senha:</label><br>
-                        <input type="password" id="idConfirmPassword" name="passwordConf" placeholder="Confirme a Sua Senha">
+                        <input type="password" id="idConfirmPassword" name="passwordConf" autocomplete="off" placeholder="Confirme a Sua Senha">
                         <span class="toggle-password">
                         <i class="bi bi-eye-fill" onclick="passwordConfrim()" id="btn-Confrimsenha"></i>
                     </span>
                     <div>
-                        <button type="submit" id="btn-Registro">Registre-se</button>
+                        <button type="submit" onclick="verificarInputs(event)" id="btn-Registro">Registre-se</button>
                     </div>
                     <div class="line-row"><img src="Site/Imgs/logo/tcc-icon-logo.png" class="logo"></div>
                 </section>
             </form>
         </main>
     </section>
+    <div id="alert"></div>
     <script>
     function aparecer() {
     let inputPass = document.getElementById('idInputPassword')
@@ -150,6 +197,41 @@ function passwordConfrim() {
     else {
         inputConfirm.setAttribute('type', 'password')
         btnConfrim.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+    }
+}
+
+function verificarInputs(event) {
+    event.preventDefault(); // Evita o recarregamento da página
+
+    let inputUser = document.getElementById('idInputUser');
+    let inputPassword = document.getElementById('idInputPassword');
+    let inputPasswordConfirm = document.getElementById('idConfirmPassword');
+    const msgAlert = document.getElementById('alert')
+
+    if(isNaN( inputUser.value)) {
+        msgAlert.innerHTML = 'O nome de Usuário deve conter apenas Números';
+        msgAlert.classList.add('erro');
+        msgAlert.style.display = 'block'
+    } 
+    else if(inputUser.value.length < 7) {
+        msgAlert.innerHTML = 'O nome de Usuário deve conter no minimo 7 digitos';
+        msgAlert.classList.add('erro');
+        msgAlert.style.display = 'block'
+        
+    } else if(inputPassword.value.length < 8) {
+    msgAlert.innerHTML = 'A sua Senha deve conter no minimo 8 digitos'
+    msgAlert.classList.add('erro');
+    msgAlert.style.display = 'block'
+    }
+    else if( inputPassword.value != inputPasswordConfirm.value) {
+    msgAlert.innerHTML = 'As Senhas não são iguais'
+    msgAlert.classList.add('erro');
+    msgAlert.style.display = 'block'
+    
+    } else{
+        msgAlert.innerHTML = 'Cadastrado com Sucesso';
+        msgAlert.classList.remove('erro');
+        msgAlert.style.display = 'block'
     }
 }
     </script>
