@@ -129,8 +129,8 @@ function login(event) {
         messageAlert.style.fontFamily = 'Arial'
         return;
     }
-    else if (inputLoginUser.value.length < 14) {
-        messageAlert.innerHTML = 'O nome de usuário deve ter pelo menos 14 caracteres';
+    else if (inputLoginUser.value.length < 7) {
+        messageAlert.innerHTML = 'O nome de usuário deve ter pelo menos 7 caracteres';
         messageAlert.style.color = ' #dc143c';
         messageAlert.style.fontFamily = 'Arial'
         return;
