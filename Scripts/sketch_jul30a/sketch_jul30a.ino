@@ -15,7 +15,7 @@ WiFiUDP udp; /// Cria um objeto udp para a comunicação UDP.
 
 char packetBuffer[255];         /// Cria um buffer para armazenar dados recebidos via UDP
 unsigned int localPort = 9999;  /// Define a porta local para comunicação UDP
-char *serverip = "10.0.1.200"; /// Define o endereço IP do servidor para enviar dados.
+char *serverip = "raspberrypi.local"; /// Define o endereço IP do servidor para enviar dados.
 unsigned int serverport = 8888; /// Define a porta do servidor para enviar dados.
 
 const char *ssid = "TCC-Fogo";         /// Define o SSID da rede WiFi.
