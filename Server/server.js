@@ -1,31 +1,28 @@
-const express = require('express');
-const mysql2 = require('mysql2');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import mysql from 'mysql2';
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
-// Configuração do banco de dados
-const db = mysql2.createPool({
-    host: 'localhost',
+const db = mysql.createConnection({
+    host: 'http://raspberrypi.local:3306',
     user: 'root',
     password: 'tcc-fogo',
     database: 'tcc_fogo'
 });
 
 app.get('/dados', (req, res) => {
-    const query = 'SELECT * FROM registros ORDER BY id DESC LIMIT 30';
+    const query = 'SELECT * FROM registros';
+
     db.query(query, (err, results) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Erro no servidor');
-        } else {
-            res.json(results);
-        }
+        if (err) throw err;
+
+        res.status(200).json(results);
     });
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
 });
