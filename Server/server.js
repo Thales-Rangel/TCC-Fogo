@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: 'http://raspberrypi.local:3306',
+    host: 'localhost',
     user: 'root',
     password: 'tcc-fogo',
     database: 'tcc_fogo'
