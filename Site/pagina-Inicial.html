@@ -7,162 +7,266 @@
     <title>Tela Inicial</title>
     <link rel="shortcut icon" href="Imgs/icon/tcc-icon-brazao.png" type="image/x-icon"> <!--Icone do titúlo ds página-->
     <style>
-        body {
-            background-color: #1a1a2E;
-            font-family: Arial;
-            color: white;
-            transition: background-color 0.5s, color 0.5s;
-        }
+       body {
+    background-color: #1a1a2E;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 60px;
+    transition: background-color 0.5s, color 0.5s;
+}
 
-        .dark-theme {
-            background-color: #1a1a2E;
-        }
+.dark-theme {
+    background-color: #1a1a2E;
+}
 
-        .light-theme {
-            background-color: #CCD0CF;
-            cursor: pointer;
-        }
+.light-theme {
+    background-color: #CCD0CF;
+    color: black;
+    cursor: pointer;
+}
 
-        header {
-            display: flex;
-            padding: 20px;
-            justify-content: center;
-        }
+/* ====== HEADER ====== */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
 
-        #button-Variantes {
-            margin-top: 10px;
-            background-color: #dc143c;
-            color: white;
-            font-size: 14px;
-            padding: 8px, 12px;
-            text-align: center;
-            width: 10%;
-            height: 40px;
-            border: none;
-            border-radius: 10px;
-            filter: drop-shadow(5px 10px 3px rgba(0, 0, 0, 0.426));
-            cursor: pointer;
-        }
+header p {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        #button-Variantes:hover {
-            background-color: #bf072c;
-        }
+.TCC-logo {
+    width: 25%;
+    filter: drop-shadow(5px 10px 3px rgba(0, 0, 0, 0.022));
+    margin-bottom: 10px;
+}
 
-        .TCC-logo {
-            width: 25%;
-            filter: drop-shadow(5px 10px 3px black);
-        }
+/* ====== BOTÃO DE TEMA ====== */
+#butto-theme {
+    width: 30px;
+}
 
-        .variantes {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+#themeIcon {
+    background-color: #4141454f;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    right: 10px;
+    border-radius: 15px;
+    border: 3px solid #dc143c;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
 
-        #butto-theme {
-            width: 30px;
-        }
+#themeIcon:hover {
+    background-color: #2121274f;
+}
 
-        #themeIcon {
-            background-color: #4141454f;
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            top: 10px;
-            right: 10px;
-            margin-top: 5%;
-            margin-right: 5%;
-            text-align: center;
-            /* Alterado para deixar a bolinha mais quadrada */
-            border-radius: 15px;
-            /* Ajuste para bordas mais quadradas */
-            border: 3px solid #dc143c;
-            cursor: pointer;
-            /* Centraliza o ícone dentro da bolinha */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
+/* ====== CONTAINER PRINCIPAL ====== */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+}
 
-        #themeIcon:hover {
-            background-color: #2121274f;
-        }
+/* ====== CARDS ====== */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
 
-        @media screen and (max-width: 480px) {
+.card {
+    background: #2b2b3c;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+}
 
-            .TCC-logo {
-                width: 100%;
-                margin-top: 50%;
-            }
+.card:hover {
+    transform: translateY(-5px);
+}
 
-            #button-Variantes {
-                width: 40%;
-            }
+.card h2 {
+    margin-bottom: 10px;
+}
 
-        }
+.card p {
+    font-size: 14px;
+    color: #ccc;
+}
 
-        @media screen and (min-width: 481px) and (max-width: 768px) {
+/* ====== BOTÃO DAS VARIANTES ====== */
+#button-Variantes {
+    margin-top: 10px;
+    background-color: #dc143c;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-align: center;
+    width: 60%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.279);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
 
-            .TCC-logo {
-                margin-top: 15%;
-                width: 60%;
-            }
+#button-Variantes:hover {
+    background-color: #bf072c;
+}
 
-            #button-Variantes {
-                width: 35%;
-                white-space: nowrap;
-                height: 50px;
-                font-size: 17px;
-            }
-        }
+/* ====== RODAPÉ ====== */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #1a1a1a;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #aaa;
+    font-size: 14px;
+}
 
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
 
-            .TCC-logo {
-                width: 40%;
-                margin-top: 30%;
-            }
+    .TCC-logo {
+        width: 50%;
+    }
+}
 
-            #button-Variantes {
-                width: 20%;
-                height: 50px;
-                font-size: 20px;
-            }
 
-        }
+       /* ====== RESPONSIVIDADE ====== */
 
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
+/* Smartphones até 480px */
+@media screen and (max-width: 480px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+    }
 
-            .TCC-logo {
-                width: 40%;
-                margin-top: 30%;
-            }
+    .TCC-logo {
+        width: 80%;
+        margin-top: 20px;
+    }
 
-            #button-Variantes {
-                width: 20%;
-                height: 50px;
-                font-size: 20px;
-            }
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
 
-        }
+    .card {
+        width: 90%;
+    }
+
+    #button-Variantes {
+        width: 80%;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
+
+/* Tablets pequenos (481px até 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .TCC-logo {
+        width: 50%;
+        margin-top: 10px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+    }
+
+    #button-Variantes {
+        width: 60%;
+        height: 50px;
+        font-size: 17px;
+    }
+}
+
+/* Tablets grandes e notebooks pequenos (769px até 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .TCC-logo {
+        width: 40%;
+        margin-top: 10px;
+    }
+
+    .cards {
+        gap: 15px;
+    }
+
+    .card {
+        width: 45%;
+    }
+
+    #button-Variantes {
+        width: 70%;
+        height: 50px;
+        font-size: 18px;
+    }
+}
     </style>
 </head>
 
 <body class="dark-theme">
-    <p><strong>Seja Bem-Vindo</strong><span id="nome"></span></p>
-    <button id="themeIcon" onclick="mudarTheme()">
-        <img src="Imgs/icon/lua-icon.png" id="butto-theme" alt="Ícone do tema">
-    </button>
     <header>
-        <img src="Imgs/logo/TCC-Fogo-logo.png" class="TCC-logo">
+        <img src="Imgs/logo/TCC-Fogo-logo.png" class="TCC-logo" alt="Logo do Projeto">
+        <p><strong>Seja Bem-Vindo</strong><span id="nome"></span></p>
+        <button id="themeIcon" onclick="mudarTheme()">
+            <img src="Imgs/icon/lua-icon.png" id="butto-theme" alt="Ícone do tema">
+        </button>
     </header>
-    <div class="container">
-        <div class="variantes">
-            <br>
-            <button type="button" id="button-Variantes" onclick="Variantes()">Verificar Variantes</button>
-        </div>
-    </div>
+
+    <main class="container">
+        <section class="cards">
+            <!-- Card com texto -->
+            <div class="card">
+                <h2>Sobre o Projeto</h2>
+                <p>O TCC Fogo é um sistema desenvolvido para monitoramento de incêndios no IFRN Campus Lajes, utilizando sensores e tecnologia IoT.</p>
+            </div>
+
+            <!-- Card com botão -->
+            <div class="card">
+                <h2>Módulos</h2>
+                <button type="button" id="button-Variantes" onclick="verificarModolos()">Verificar Módulo</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TCC Fogo - Todos os direitos reservados.</p>
+    </footer>
+</body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="/Server/js.cookie.js"></script>
 	<script src="/Server/settings.js"></script>
@@ -187,30 +291,41 @@
           window.location.href = "index.html";
       });
 
-      function Variantes() {
+      function verificarModolos() {
             let botao_variantes = document.getElementById('button-Variantes');
             botao_variantes = window.location.href = 'pagina-Secundaria.html'
         }
         // função para mudar o tma da Tela Inicial
         function mudarTheme() {
-            const corpo = document.querySelector('body');
-            const IconTheme = document.querySelector('#butto-theme');
-            const themeIcon = document.querySelector('#themeIcon');
+    const corpo = document.querySelector('body');
+    const IconTheme = document.querySelector('#butto-theme');
+    const themeIcon = document.querySelector('#themeIcon');
+    const cards = document.querySelectorAll('.card');
 
-            if (corpo.classList.contains('dark-theme')) {
-                // Modo Claro
-                corpo.classList.remove('dark-theme');
-                corpo.classList.add('light-theme');
-                IconTheme.src = 'Imgs/icon/sol-icon.png'; // Ícone do modo claro
-                themeIcon.style.borderColor = '#ffffff';
-            } else {
-                // Modo Escuro
-                corpo.classList.remove('light-theme');
-                corpo.classList.add('dark-theme');
-                IconTheme.src = 'Imgs/icon/lua-icon.png'; // Ícone do modo escuro
-                themeIcon.style.borderColor = '#dc143c';
-            }
-        }
+    if (corpo.classList.contains('dark-theme')) {
+        // Modo Claro
+        corpo.classList.remove('dark-theme');
+        corpo.classList.add('light-theme');
+        IconTheme.src = 'Imgs/icon/sol-icon.png'; // Ícone do modo claro
+        themeIcon.style.borderColor = '#ffffff';
+
+        cards.forEach(card => {
+            card.style.backgroundColor = '#E5E5E5';
+           
+        });
+    } else {
+        // Modo Escuro
+        corpo.classList.remove('light-theme');
+        corpo.classList.add('dark-theme');
+        IconTheme.src = 'Imgs/icon/lua-icon.png'; // Ícone do modo escuro
+        themeIcon.style.borderColor = '#dc143c';
+
+        cards.forEach(card => {
+            card.style.backgroundColor = '#2b2b3c'; // Volta ao padrão do modo escuro
+        });
+    }
+}
+
     </script>
 </body>
 </html>
