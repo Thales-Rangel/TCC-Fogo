@@ -145,8 +145,8 @@ function login(event) {
         messageAlert.style.color = ' #0ccf82'; // tons de verde: #099452; #00F026;
         messageAlert.style.fontFamily = 'Arial'
         messageAlert.style.fontWeight = 'bold'
-        setTimeout(() => {
-            window.location.href = suap.getLoginURL();
+        setTimeout(function() {
+            window.location.href = "Site/pagina-Inicial.html";
         }, 3000);
     }
 }
